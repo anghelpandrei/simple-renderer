@@ -1,0 +1,12 @@
+# Visual Studio files
+.vs/
+
+# Git
+.git/
+
+# MacOS build directory
+build/
+.DS_Store
+
+# Visual studio build directory
+out/

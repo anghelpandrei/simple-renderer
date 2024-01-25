@@ -7,6 +7,6 @@
 namespace SimpleRenderer {
 	namespace Inputs {
 		void processWindow(Window& window);
-		void processScene(Scene& scene);
+		void processCamera(const Window& window, Camera& camera);
 	}
 }

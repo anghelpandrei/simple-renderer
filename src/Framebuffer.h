@@ -4,15 +4,14 @@
 #include <glad/glad.h>
 
 namespace SimpleRenderer {
-	class Texture {
+	class Framebuffer {
 	public:
-		Texture(const char* path);
-		~Texture();
+		Framebuffer();
+		~Framebuffer();
 		void bind();
+		void unbind();
 
 	private:
-		int m_width, m_height;
 		GLuint m_ID;
 	};
-
 }

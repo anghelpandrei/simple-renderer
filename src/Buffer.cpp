@@ -23,7 +23,6 @@ namespace SimpleRenderer {
 
 	ElementBuffer::ElementBuffer(std::vector<GLuint> indices)
 		: m_count((GLsizei)indices.size()) {
-		std::cout << "m_count: " << m_count << std::endl;
 		glGenBuffers(1, &m_ID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_ID);
 		glBufferData(GL_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);

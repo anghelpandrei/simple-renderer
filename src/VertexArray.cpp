@@ -37,8 +37,7 @@ namespace SimpleRenderer {
 		glBindVertexArray(0);
 	}
 
-	GLsizei VertexArray::getCount()
-	{
+	GLsizei VertexArray::getCount() {
 		return m_elementBuffer->getCount();
 	}
 }

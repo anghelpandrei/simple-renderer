@@ -22,7 +22,6 @@ namespace SimpleRenderer {
 
 			vertices.emplace_back(position, normals, uv);
 		}
-		std::cout << "vertices size " << vertices.size() << std::endl;
 		auto vertexBuffer = std::make_shared<VertexBuffer>(vertices);
 		m_vertexArray = std::make_unique<VertexArray>(vertexBuffer);
 		auto elementBuffer = std::make_shared<ElementBuffer>(indices);

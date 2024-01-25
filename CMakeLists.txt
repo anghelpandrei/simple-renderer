@@ -10,7 +10,7 @@ project ("simple-renderer")
 
 include_directories(vendor/glad/include vendor/stb vendor/glm src)
 # Add source to this project's executable.
-add_executable (simple-renderer "vendor/glad/src/glad.c" "vendor/stb/stb_image.h" "src/Main.cpp" "src/SimpleRenderer.h" "src/Window.h" "src/Window.cpp" "src/Mesh.h" "src/Mesh.cpp" "src/Inputs.h" "src/Inputs.cpp" "src/Scene.h" "src/Scene.cpp" "src/Camera.h" "src/Camera.cpp" "src/Shader.h" "src/Shader.cpp" "src/VertexArray.h" "src/VertexArray.cpp" "src/Buffer.h" "src/Buffer.cpp" "src/Texture.h" "src/Texture.cpp" "src/Model.h" "src/Model.cpp")
+add_executable (simple-renderer "vendor/glad/src/glad.c" "vendor/stb/stb_image.h" "src/Main.cpp" "src/SimpleRenderer.h" "src/Window.h" "src/Window.cpp" "src/Mesh.h" "src/Mesh.cpp" "src/Inputs.h" "src/Inputs.cpp" "src/Scene.h" "src/Scene.cpp" "src/Camera.h" "src/Camera.cpp" "src/Shader.h" "src/Shader.cpp" "src/VertexArray.h" "src/VertexArray.cpp" "src/Buffer.h" "src/Buffer.cpp" "src/Texture.h" "src/Texture.cpp" "src/Model.h" "src/Model.cpp" "src/Framebuffer.h" "src/Framebuffer.cpp" "src/Application.h" "src/Application.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET simple-renderer PROPERTY CXX_STANDARD 20)

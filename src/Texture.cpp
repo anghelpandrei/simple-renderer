@@ -1,5 +1,7 @@
 #include "Texture.h"
-#include <stb_image.h>
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 namespace SimpleRenderer {
 	Texture::Texture(const char* path) {
@@ -51,9 +53,11 @@ namespace SimpleRenderer {
 		stbi_image_free(data);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
+
 	Texture::~Texture() {
 		glDeleteTextures(1, &m_ID);
 	}
+
 	void Texture::bind() {
 		glBindTexture(GL_TEXTURE_2D, m_ID);
 	}

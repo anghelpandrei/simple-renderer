@@ -15,12 +15,15 @@ namespace SimpleRenderer {
 		if (m_window == NULL) {
 			std::cout << "Failed to create window" << std::endl;
 		}
+		glfwSetWindowUserPointer(m_window, (void*)this);
 		glfwMakeContextCurrent(m_window);
 		glfwSetFramebufferSizeCallback(m_window, framebufferSizeCallback);
 		glfwSetCursorPosCallback(m_window, mouseCallback);
 
+		glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		glfwSwapInterval(1);
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-			std::cout << "glad failed" << std::endl;
+			std::cout << "Glad failed to load" << std::endl;
 		}
 
 	}
@@ -62,13 +65,21 @@ namespace SimpleRenderer {
 
 	void Window::framebufferSizeCallback(GLFWwindow* window, int width, int height) {
 		glViewport(0, 0, width, height);
-		// TODO
 		Window* newWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
 		newWindow->camera->updateProjection(newWindow->getAspectRatio());
 	}
 
 	void Window::mouseCallback(GLFWwindow* window, double xPos, double yPos) {
+		Window* newWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+		float x = static_cast<float>(xPos);
+		float y = static_cast<float>(yPos);
+		float xOffset = x - newWindow->lastX;
+		float yOffset = newWindow->lastY - y;
+		newWindow->lastX = x;
+		newWindow->lastY = y;
 
+		newWindow->camera->updateCameraMouse(xOffset, yOffset);
+		
 	}
 
 }

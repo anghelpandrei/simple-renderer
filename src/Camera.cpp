@@ -13,38 +13,42 @@ namespace SimpleRenderer {
 	}
 
 	void Camera::updateCamera(float timeStep) {
-		m_pos += timeStep * m_speed * m_speedDir;
+		m_pos += timeStep * m_speed * m_acc;
+		m_rot += m_rotAcc * timeStep;
+		m_acc = glm::vec3(0.0f);
+		m_rotAcc = glm::vec3(0.0f);
+		if (m_rot.x > 1.5f)
+			m_rot.x = 1.5f;
+		else if (m_rot.x < -1.5f)
+			m_rot.x = -1.5f;
 		updateVectors();
 	}
 
-	void Camera::updateCameraMouse(float timeStep, float mouseX, float mouseY) {
-		m_rot.x += mouseY * m_rotSpeed.x;
-		m_rot.y += mouseX * m_rotSpeed.y;
-		if (m_rot.x > 89.0f)
-			m_rot.x = 89.0f;
-		else if (m_rot.x < -89.0f)
-			m_rot.x = -89.0f;
+	void Camera::updateCameraMouse(float mouseX, float mouseY) {
+		m_rotAcc.x = mouseY * m_rotSpeed.x;
+		m_rotAcc.y = mouseX * m_rotSpeed.y;
+		
 	}
 
 	void Camera::updateCameraKeyboard(int keyboardX, int keyboardY, int keyboardZ) {
 		switch (keyboardX) {
-		case KeyboardDirection::None: m_speedDir.x = 0.0f; break;
-		case KeyboardDirection::Forward: m_speedDir.x = 1.0f; break;
-		case KeyboardDirection::Backward: m_speedDir.x = -1.0f; break;
-		default: break;
-		}
-
-		switch (keyboardY) {
-		case KeyboardDirection::None: m_speedDir.y = 0.0f; break;
-		case KeyboardDirection::Up: m_speedDir.y = 1.0f; break;
-		case KeyboardDirection::Down: m_speedDir.y = -1.0f; break;
+		case KeyboardDirection::None: break;
+		case KeyboardDirection::Forward: m_acc += m_front; break;
+		case KeyboardDirection::Backward: m_acc -= m_front; break;
 		default: break;
 		}
 
 		switch (keyboardZ) {
-		case KeyboardDirection::None: m_speedDir.z = 0.0f; break;
-		case KeyboardDirection::Left: m_speedDir.z = -1.0f; break;
-		case KeyboardDirection::Right: m_speedDir.z = 1.0f; break;
+		case KeyboardDirection::None: break;
+		case KeyboardDirection::Left: m_acc -= m_right; break;
+		case KeyboardDirection::Right: m_acc += m_right; break;
+		default: break;
+		}
+
+		switch (keyboardY) {
+		case KeyboardDirection::None: m_acc.y = 0.0f; break;
+		case KeyboardDirection::Up: m_acc.y = m_worldUp.y; break;
+		case KeyboardDirection::Down: m_acc.y = -m_worldUp.y; break;
 		default: break;
 		}
 	}
@@ -59,7 +63,8 @@ namespace SimpleRenderer {
 			sin(m_rot.x),
 			sin(m_rot.y) * cos(m_rot.x)
 		));
-		m_up = glm::normalize(glm::cross(glm::cross(m_front, m_worldUp), m_front));
+		m_right = glm::normalize(glm::cross(m_front, m_worldUp));
+		m_up = glm::normalize(glm::cross(m_right, m_front));
 	}
 
 	glm::mat4 Camera::getView() const {

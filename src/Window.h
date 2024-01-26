@@ -23,6 +23,8 @@ namespace SimpleRenderer {
 
 		std::shared_ptr<Camera> camera;
 
+		float lastX = 0.0f, lastY = 0.0f;
+
 	private:
 		static void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 		static void mouseCallback(GLFWwindow* window, double xPos, double yPos);

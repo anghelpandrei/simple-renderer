@@ -15,7 +15,7 @@ namespace SimpleRenderer {
 
 	void Application::createScene() {
 		m_scene = std::make_unique<Scene>();
-		m_camera = std::make_shared<Camera>(glm::vec3(0.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec3(1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 70.0f);
+		m_camera = std::make_shared<Camera>(glm::vec3(0.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec3(10.0f), glm::vec3(0.0f, 1.0f, 0.0f), 70.0f);
 		m_camera->updateProjection(m_window->getAspectRatio());
 		m_window->bindCamera(m_camera);
 		auto modelShader = std::make_shared<ShaderProgram>("src/shaders/basic.vert", "src/shaders/basic.frag");

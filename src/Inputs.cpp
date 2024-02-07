@@ -6,7 +6,7 @@ namespace SimpleRenderer {
 			window.processInputs();
 		}
 
-		void Inputs::processCamera(const Window& window, Camera& camera) {
+		void processCamera(const Window& window, Camera& camera) {
 			int xDir = KeyboardDirection::None;
 			int yDir = KeyboardDirection::None;
 			int zDir = KeyboardDirection::None;

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <iostream>
 #include <memory>
@@ -6,4 +6,4 @@
 #include <fstream>
 #include <sstream>
 
-#define ROOT_PATH "../../../"
+#define ROOT_PATH "../../"

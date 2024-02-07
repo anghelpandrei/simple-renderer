@@ -6,10 +6,8 @@ namespace SimpleRenderer {
 	Shader::Shader(const char* path, GLenum type)
 		: m_ID(glCreateShader(type)) {
 
-		std::string absolutePath = ROOT_PATH + std::string(path);
-
 		std::ifstream shaderFile;
-		shaderFile.open(absolutePath);
+		shaderFile.open(path);
 
 		std::stringstream shaderStream;
 		shaderStream << shaderFile.rdbuf();

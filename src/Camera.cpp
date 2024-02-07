@@ -33,8 +33,8 @@ namespace SimpleRenderer {
 	void Camera::updateCameraKeyboard(int keyboardX, int keyboardY, int keyboardZ) {
 		switch (keyboardX) {
 		case KeyboardDirection::None: break;
-		case KeyboardDirection::Forward: m_acc += m_front; break;
-		case KeyboardDirection::Backward: m_acc -= m_front; break;
+		case KeyboardDirection::Forward: m_acc += glm::normalize(m_front - glm::dot(m_worldUp, m_front) * m_worldUp); break;
+		case KeyboardDirection::Backward: m_acc -= glm::normalize(m_front - glm::dot(m_worldUp, m_front) * m_worldUp); break;
 		default: break;
 		}
 

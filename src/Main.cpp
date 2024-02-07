@@ -1,5 +1,4 @@
-﻿// simple-renderer.cpp : Defines the entry point for the application.
-//
+﻿// Entry point
 
 #include "Application.h"
 

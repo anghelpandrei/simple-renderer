@@ -9,11 +9,7 @@ namespace SimpleRenderer {
 		stbi_set_flip_vertically_on_load(true);
 
 		int channels;
-
-		std::string absolutePath = ROOT_PATH + std::string(path);
-		const char* newPath = absolutePath.c_str();
-
-		stbi_uc* data = stbi_load(newPath, &m_width, &m_height, &channels, 0);
+		stbi_uc* data = stbi_load(path, &m_width, &m_height, &channels, 0);
 
 		if (data) {
 			std::cout << "Texture " << path << " loaded successfully" << std::endl;

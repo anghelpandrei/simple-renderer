@@ -5,5 +5,3 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-
-#define ROOT_PATH "../../"

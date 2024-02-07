@@ -18,11 +18,11 @@ namespace SimpleRenderer {
 		m_camera = std::make_shared<Camera>(glm::vec3(0.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec3(10.0f), glm::vec3(0.0f, 1.0f, 0.0f), 70.0f);
 		m_camera->updateProjection(m_window->getAspectRatio());
 		m_window->bindCamera(m_camera);
-		auto modelShader = std::make_shared<ShaderProgram>("src/shaders/basic.vert", "src/shaders/basic.frag");
-		auto waterShader = std::make_shared<ShaderProgram>("src/shaders/basic.vert", "src/shaders/basic.frag");
+		auto modelShader = std::make_shared<ShaderProgram>("res/shaders/basic.vert", "res/shaders/basic.frag");
+		auto waterShader = std::make_shared<ShaderProgram>("res/shaders/basic.vert", "res/shaders/basic.frag");
 		m_scene->setModelShader(modelShader);
 		m_scene->setWaterShader(waterShader);
-		auto model = std::make_shared<Model>("res/container.jpg");
+		auto model = std::make_shared<Model>("res/assets/container.jpg");
 
 		std::vector<GLfloat> screen{
 			-0.8f, -8.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,

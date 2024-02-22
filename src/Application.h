@@ -12,12 +12,15 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-
 namespace SimpleRenderer {
 	class Application {
 	public:
 		Application();
 		~Application();
+
+		Application(const Application& other) = delete;
+		Application& operator=(const Application& other) = delete;
+
 		void createScene();
 		void run();
 

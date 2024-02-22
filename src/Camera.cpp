@@ -8,10 +8,6 @@ namespace SimpleRenderer {
 		: m_pos(pos), m_speed(speed), m_rot(glm::radians(rot)), m_rotSpeed(glm::radians(rotSpeed)), m_worldUp(worldUp), m_fov(fov) {
 	}
 
-	Camera::~Camera() {
-
-	}
-
 	void Camera::updateCamera(float timeStep) {
 		m_pos += timeStep * m_speed * m_acc;
 		m_rot += m_rotAcc * timeStep;

@@ -3,7 +3,8 @@
 #include "Application.h"
 
 int main() {
-	auto application = std::make_unique<SimpleRenderer::Application>();
-	application->run();
+	SimpleRenderer::Application application;
+	application.run();
+	
 	return 0;
 }

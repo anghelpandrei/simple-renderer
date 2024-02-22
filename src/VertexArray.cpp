@@ -1,10 +1,11 @@
 #include "VertexArray.h"
 
 namespace SimpleRenderer {
-	VertexArray::VertexArray(std::shared_ptr<VertexBuffer> vertexBuffer) {
+	VertexArray::VertexArray(std::unique_ptr<VertexBuffer>&& vertexBuffer, std::unique_ptr<ElementBuffer>&& elementBuffer)
+		: m_vertexBuffer(std::move(vertexBuffer)), m_elementBuffer(std::move(elementBuffer)) {
 		glGenVertexArrays(1, &m_ID);
 		glBindVertexArray(m_ID);
-		vertexBuffer->bind();
+		m_vertexBuffer->bind();
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, false, 8 * sizeof(GLfloat), (const void*)0);
@@ -15,7 +16,7 @@ namespace SimpleRenderer {
 		glEnableVertexAttribArray(2);
 		glVertexAttribPointer(2, 2, GL_FLOAT, false, 8 * sizeof(GLfloat), (const void*)(6 * sizeof(float)));
 
-		m_vertexBuffers.push_back(vertexBuffer);
+		m_elementBuffer->bind();
 
 	}
 
@@ -23,21 +24,15 @@ namespace SimpleRenderer {
 		glDeleteVertexArrays(1, &m_ID);
 	}
 
-	void VertexArray::setElementBuffer(std::shared_ptr<ElementBuffer> elementBuffer) {
-		bind();
-		elementBuffer->bind();
-		m_elementBuffer = elementBuffer;
-	}
-
-	void VertexArray::bind() {
+	void VertexArray::bind() const {
 		glBindVertexArray(m_ID);
 	}
 
-	void VertexArray::unbind() {
+	void VertexArray::unbind() const {
 		glBindVertexArray(0);
 	}
 
-	GLsizei VertexArray::getCount() {
+	GLsizei VertexArray::getCount() const {
 		return m_elementBuffer->getCount();
 	}
 }

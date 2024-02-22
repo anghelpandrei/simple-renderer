@@ -5,18 +5,18 @@ namespace SimpleRenderer {
 	VertexBuffer::VertexBuffer(std::vector<Vertex> vertices) {
 		glGenBuffers(1, &m_ID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_ID);
-		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
 	}
 
 	VertexBuffer::~VertexBuffer() {
 		glDeleteBuffers(1, &m_ID);
 	}
 
-	void VertexBuffer::bind() {
+	void VertexBuffer::bind() const {
 		glBindBuffer(GL_ARRAY_BUFFER, m_ID);
 	}
 
-	void VertexBuffer::unbind() {
+	void VertexBuffer::unbind() const {
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
@@ -32,11 +32,11 @@ namespace SimpleRenderer {
 		glDeleteBuffers(1, &m_ID);
 	}
 	
-	void ElementBuffer::bind() {
+	void ElementBuffer::bind() const {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
 	}
 
-	void ElementBuffer::unbind() {
+	void ElementBuffer::unbind() const {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 	GLsizei ElementBuffer::getCount() const {

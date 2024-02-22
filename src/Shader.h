@@ -10,6 +10,10 @@ namespace SimpleRenderer {
 	public:
 		Shader(const char* path, GLenum type);
 		~Shader();
+
+		Shader(const Shader& other) = delete;
+		Shader& operator=(const Shader& other) = delete;
+
 		GLuint getID() const;
 
 	private:
@@ -20,6 +24,9 @@ namespace SimpleRenderer {
 	public:
 		ShaderProgram(const char* vertexPath, const char* fragmentPath);
 		~ShaderProgram();
+
+		ShaderProgram(const ShaderProgram& other) = delete;
+		ShaderProgram& operator=(const ShaderProgram& other) = delete;
 
 		void use();
 		void setInteger(const GLchar* name, const int value);

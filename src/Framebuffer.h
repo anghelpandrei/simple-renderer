@@ -8,6 +8,8 @@ namespace SimpleRenderer {
 	public:
 		Framebuffer();
 		~Framebuffer();
+		Framebuffer(const Framebuffer& other) = delete;
+		Framebuffer& operator=(const Framebuffer& other) = delete;
 		void bind();
 		void unbind();
 

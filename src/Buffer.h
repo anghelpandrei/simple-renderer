@@ -19,8 +19,15 @@ namespace SimpleRenderer {
 	public:
 		VertexBuffer(std::vector<Vertex> vertices);
 		~VertexBuffer();
-		void bind();
-		void unbind();
+
+		VertexBuffer(const VertexBuffer& other) = delete;
+		VertexBuffer& operator=(const VertexBuffer& other) = delete;
+		
+		VertexBuffer(VertexBuffer&& other) = default;
+		VertexBuffer& operator=(VertexBuffer&& other) = default;
+
+		void bind() const;
+		void unbind() const;
 
 	private:
 		GLuint m_ID;
@@ -30,8 +37,15 @@ namespace SimpleRenderer {
 	public:
 		ElementBuffer(std::vector<GLuint> indices);
 		~ElementBuffer();
-		void bind();
-		void unbind();
+
+		ElementBuffer(const ElementBuffer& other) = delete;
+		ElementBuffer& operator=(const ElementBuffer& other) = delete;
+		
+		ElementBuffer(ElementBuffer&& other) = default;
+		ElementBuffer& operator=(ElementBuffer&& other) = default;
+
+		void bind() const;
+		void unbind() const;
 		GLsizei getCount() const;
 
 	private:

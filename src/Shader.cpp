@@ -39,8 +39,7 @@ namespace SimpleRenderer {
 		glDeleteShader(m_ID);
 	}
 
-	GLuint Shader::getID() const
-	{
+	GLuint Shader::getID() const {
 		return m_ID;
 	}
 

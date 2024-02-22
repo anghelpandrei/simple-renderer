@@ -2,24 +2,16 @@
 #include <glad/glad.h>
 
 namespace SimpleRenderer {
-	Scene::Scene() {
-
-	}
-
-	Scene::~Scene() {
-
-	}
-
 	void Scene::addModel(std::shared_ptr<Model> model) {
 		m_models.push_back(model);
 	}
 
-	void Scene::setModelShader(std::shared_ptr<ShaderProgram> modelShader) {
-		m_modelShader = modelShader;
+	void Scene::setModelShader(std::unique_ptr<ShaderProgram>&& modelShader) {
+		m_modelShader = std::move(modelShader);
 	}
 
-	void Scene::setWaterShader(std::shared_ptr<ShaderProgram> waterShader) {
-		m_waterShader = waterShader;
+	void Scene::setWaterShader(std::unique_ptr<ShaderProgram>&& waterShader) {
+		m_waterShader = std::move(waterShader);
 	}
 
 	void Scene::render(const Camera& camera) {
@@ -35,7 +27,7 @@ namespace SimpleRenderer {
 			glm::mat4 m = model->getMatrix();
 			glm::mat4 pvm = p * v * m;
 			m_modelShader->setMat4("pvm", pvm);
-			model->render();
+			model->render(*m_modelShader);
 		}
 		m_waterShader->use();
 

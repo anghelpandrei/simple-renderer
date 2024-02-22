@@ -14,6 +14,9 @@ namespace SimpleRenderer {
 		Window(int width, int height, const char* title);
 		~Window();
 
+		Window(const Window& other) = delete;
+		Window& operator&(const Window& other) = delete;
+
 		void bindCamera(std::shared_ptr<Camera> camera);
 		void update();
 		int shouldClose() const;

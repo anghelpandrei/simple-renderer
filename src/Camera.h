@@ -19,7 +19,7 @@ namespace SimpleRenderer {
 	class Camera {
 	public:
 		Camera(const glm::vec3& pos, const glm::vec3& speed, const glm::vec3& rot, const glm::vec3& rotSpeed, const glm::vec3& worldUp, const float fov);
-		~Camera();
+
 		void updateCamera(float timeStep);
 		void updateCameraMouse(float mouseX, float mouseY);
 		void updateCameraKeyboard(int keyboardX, int keyboardY, int keyboardZ);
@@ -42,6 +42,6 @@ namespace SimpleRenderer {
 		glm::mat4 m_projection;
 		float m_fov;
 		float m_zNear = 0.01f;
-		float m_zFar = 200.0f;
+		float m_zFar = 20000.0f;
 	};
 }

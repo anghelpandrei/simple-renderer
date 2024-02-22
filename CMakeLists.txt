@@ -15,7 +15,11 @@ project (simple-renderer)
 include_directories(vendor/glad/include vendor/stb vendor/glm vendor/imgui src)
 
 set(CMAKE_BINARY_DIR bin)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+if (APPLE)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR})
+elseif (WIN32)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+endif()
 
 
 # Add source to this project's executable.

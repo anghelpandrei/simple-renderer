@@ -1,5 +1,9 @@
 #include "Application.h"
 
+#include "Inputs.h"
+
+#include <iostream>
+
 namespace SimpleRenderer {
 	Application::Application() {
 		if (!glfwInit()) {

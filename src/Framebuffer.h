@@ -1,7 +1,6 @@
 #pragma once
 
-#include "SimpleRenderer.h"
-#include <glad/glad.h>
+#include "glad/glad.h"
 
 namespace SimpleRenderer {
 	class Framebuffer {

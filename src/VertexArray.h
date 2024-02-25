@@ -1,8 +1,10 @@
 #pragma once
 
-#include "SimpleRenderer.h"
 #include "Buffer.h"
-#include <glad/glad.h>
+
+#include "glad/glad.h"
+
+#include <memory>
 
 namespace SimpleRenderer {
 

@@ -1,5 +1,9 @@
 #include "Window.h"
 
+#include "glad/glad.h"
+
+#include <iostream>
+
 namespace SimpleRenderer {
 
 	Window::Window(int width, int height, const char* title)

@@ -1,37 +1,24 @@
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.10)
 
-# Enable Hot Reload for MSVC compilers if supported.
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
-endif()
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project (simple-renderer)
-
-
-#set_property(TARGET simple-renderer PROPERTY CXX_STANDARD 23)
-#set_property(TARGET simple-renderer PROPERTY CXX_STANDARD_REQUIRED ON)
 
 include_directories(vendor/glad/include vendor/stb vendor/glm vendor/imgui src)
 
 set(CMAKE_BINARY_DIR bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-
-# Add source to this project's executable.
-set(SOURCE_FILES "src/Main.cpp" "src/SimpleRenderer.h")
-
-add_executable (simple-renderer "vendor/glad/src/glad.c" "vendor/stb/stb_image.h" "vendor/imgui/imgui.h"
-				"vendor/imgui/backends/imgui_impl_opengl3.h" "vendor/imgui/backends/imgui_impl_glfw.h"
-				${SOURCE_FILES} "src/Window.h" "src/Window.cpp" "src/Mesh.h" "src/Mesh.cpp"
+set(LIB_FILES "vendor/glad/src/glad.c" "vendor/stb/stb_image.h" "vendor/imgui/imgui.h"
+				"vendor/imgui/backends/imgui_impl_opengl3.h" "vendor/imgui/backends/imgui_impl_glfw.h")
+set(SOURCE_FILES "src/Main.cpp" "src/Window.h" "src/Window.cpp" "src/Mesh.h" "src/Mesh.cpp"
 				"src/Inputs.h" "src/Inputs.cpp" "src/Scene.h" "src/Scene.cpp" "src/Camera.h" "src/Camera.cpp"
 				"src/Shader.h" "src/Shader.cpp" "src/VertexArray.h" "src/VertexArray.cpp" "src/Buffer.h"
 				"src/Buffer.cpp" "src/Texture.h" "src/Texture.cpp" "src/Model.h" "src/Model.cpp"
 				"src/Framebuffer.h" "src/Framebuffer.cpp" "src/Application.h" "src/Application.cpp")
 
-target_compile_features(simple-renderer PUBLIC cxx_std_17)
-set_target_properties(simple-renderer PROPERTIES CXX_EXTENSIONS OFF)
-
+add_executable (simple-renderer ${LIB_FILES} ${SOURCE_FILES})
 
 add_custom_target(copy_resources ALL
         COMMAND ${CMAKE_COMMAND} -E copy_directory

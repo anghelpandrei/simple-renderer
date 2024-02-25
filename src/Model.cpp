@@ -1,5 +1,10 @@
 #include "Model.h"
 
+#include "assimp/Importer.hpp"
+#include "assimp/postprocess.h"
+
+#include <iostream>
+
 namespace SimpleRenderer {
 
 	Model::Model(const std::string& path) {

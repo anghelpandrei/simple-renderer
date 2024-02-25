@@ -1,11 +1,11 @@
 #pragma once
 
-#include "SimpleRenderer.h"
-#include <Scene.h>
+#include "Camera.h"
 
 #define GLFW_INCLUDE_NONE
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
+
+#include <memory>
 
 namespace SimpleRenderer {
 

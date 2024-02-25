@@ -1,8 +1,7 @@
 #pragma once
 
-#include "SimpleRenderer.h"
+#include "Camera.h"
 #include "Window.h"
-#include "Scene.h"
 
 namespace SimpleRenderer {
 	namespace Inputs {

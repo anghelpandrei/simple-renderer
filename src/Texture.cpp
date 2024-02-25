@@ -3,13 +3,15 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+#include <iostream>
+
 namespace SimpleRenderer {
-	Texture::Texture(const std::string& path, const TextureType type)
+	Texture::Texture(std::string_view path, const TextureType type)
 		: m_type(type), m_path(path) {
 		stbi_set_flip_vertically_on_load(true);
 
 		int channels;
-		stbi_uc* data = stbi_load(path.c_str(), &m_width, &m_height, &channels, 0);
+		stbi_uc* data = stbi_load(std::string(path).c_str(), &m_width, &m_height, &channels, 0);
 
 		if (data) {
 			std::cout << "Texture " << path << " loaded successfully" << std::endl;

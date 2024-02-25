@@ -1,6 +1,5 @@
 #pragma once
 
-#include "SimpleRenderer.h"
 #include <glm/ext/vector_float3.hpp>
 #include <glm/ext/matrix_float4x4.hpp>
 
@@ -41,7 +40,7 @@ namespace SimpleRenderer {
 		glm::vec3 m_up;
 		glm::mat4 m_projection;
 		float m_fov;
-		float m_zNear = 0.01f;
-		float m_zFar = 20000.0f;
+		float m_zNear = 1.f;
+		float m_zFar = 2000.0f;
 	};
 }

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "SimpleRenderer.h"
-#include <glad/glad.h>
-#include "VertexArray.h"
 #include "Buffer.h"
-#include "Texture.h"
 #include "Shader.h"
+#include "Texture.h"
+#include "VertexArray.h"
+
+#include "glad/glad.h"
 
 namespace SimpleRenderer {
 	class Mesh {

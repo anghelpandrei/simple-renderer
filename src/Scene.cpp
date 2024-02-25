@@ -1,5 +1,6 @@
 #include "Scene.h"
-#include <glad/glad.h>
+
+#include "glad/glad.h"
 
 namespace SimpleRenderer {
 	void Scene::addModel(std::shared_ptr<Model> model) {
@@ -23,6 +24,7 @@ namespace SimpleRenderer {
 
 		m_modelShader->use();
 		glEnable(GL_DEPTH_TEST);
+		glDepthFunc(GL_LESS);
 		for (const auto& model : m_models) {
 			glm::mat4 m = model->getMatrix();
 			glm::mat4 pvm = p * v * m;

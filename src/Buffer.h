@@ -1,9 +1,10 @@
 #pragma once
 
-#include "SimpleRenderer.h"
-#include <glad/glad.h>
-#include <glm/ext/vector_float3.hpp>
-#include <glm/ext/vector_float2.hpp>
+#include "glad/glad.h"
+#include "glm/ext/vector_float3.hpp"
+#include "glm/ext/vector_float2.hpp"
+
+#include <vector>
 
 namespace SimpleRenderer {
 

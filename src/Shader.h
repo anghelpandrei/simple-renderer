@@ -1,8 +1,7 @@
 #pragma once
 
-#include "SimpleRenderer.h"
-#include <glad/glad.h>
-#include <glm/ext/matrix_float4x4.hpp>
+#include "glad/glad.h"
+#include "glm/ext/matrix_float4x4.hpp"
 
 namespace SimpleRenderer {
 

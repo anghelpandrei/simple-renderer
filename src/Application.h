@@ -1,16 +1,10 @@
 #pragma once
 
-#include "SimpleRenderer.h"
-
-#include "Window.h"
+#include "Camera.h"
 #include "Scene.h"
-#include "Inputs.h"
-#include "Texture.h"
-#include "Model.h"
-#include "Shader.h"
+#include "Window.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <memory>
 
 namespace SimpleRenderer {
 	class Application {

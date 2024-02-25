@@ -1,12 +1,12 @@
 #pragma once
 
-#include "SimpleRenderer.h"
 #include "Texture.h"
 #include "Mesh.h"
+
 #include "glm/ext/matrix_float4x4.hpp"
-#include "assimp/Importer.hpp"
 #include "assimp/scene.h"
-#include "assimp/postprocess.h"
+
+#include <memory>
 
 namespace SimpleRenderer {
 	class Model {

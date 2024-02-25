@@ -1,7 +1,8 @@
 #pragma once
 
-#include "SimpleRenderer.h"
-#include <glad/glad.h>
+#include "glad/glad.h"
+
+#include <string>
 #include <string_view>
 
 namespace SimpleRenderer {
@@ -11,7 +12,7 @@ namespace SimpleRenderer {
 
 	class Texture {
 	public:
-		Texture(const std::string& path, const TextureType type);
+		Texture(std::string_view path, const TextureType type);
 		~Texture();
 
         Texture(const Texture& other) = delete;

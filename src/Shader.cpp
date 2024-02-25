@@ -1,5 +1,10 @@
 #include "Shader.h"
-#include <glm/gtc/type_ptr.hpp>
+
+#include "glm/gtc/type_ptr.hpp"
+
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 namespace SimpleRenderer {
 

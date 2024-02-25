@@ -8,7 +8,11 @@ project (simple-renderer)
 include_directories(vendor/glad/include vendor/stb vendor/glm vendor/imgui src)
 
 set(CMAKE_BINARY_DIR bin)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+if (APPLE)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR})
+elseif (WIN32)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+endif()
 
 set(LIB_FILES "vendor/glad/src/glad.c" "vendor/stb/stb_image.h" "vendor/imgui/imgui.h"
 				"vendor/imgui/backends/imgui_impl_opengl3.h" "vendor/imgui/backends/imgui_impl_glfw.h")

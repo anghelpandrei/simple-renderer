@@ -6,6 +6,7 @@
 #include <string_view>
 
 namespace SimpleRenderer {
+
 	enum class TextureType {
 		none, diffuse, specular, normal, height
 	};

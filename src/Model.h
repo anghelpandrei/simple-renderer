@@ -9,6 +9,7 @@
 #include <memory>
 
 namespace SimpleRenderer {
+
 	class Model {
 	public:
 		Model(const std::string& path);

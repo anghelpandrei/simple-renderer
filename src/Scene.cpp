@@ -15,6 +15,10 @@ namespace SimpleRenderer {
 		m_waterShader = std::move(waterShader);
 	}
 
+	void Scene::init() {
+		
+	}
+
 	void Scene::render(const Camera& camera) {
 		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -27,11 +31,13 @@ namespace SimpleRenderer {
 		glDepthFunc(GL_LESS);
 		for (const auto& model : m_models) {
 			glm::mat4 m = model->getMatrix();
-			glm::mat4 pvm = p * v * m;
-			m_modelShader->setMat4("pvm", pvm);
+			glm::mat4 pv = p * v;
+			m_modelShader->setMat4("PV", pv);
+			m_modelShader->setMat4("M", m);
+			m_modelShader->setMat4("itM", glm::transpose(glm::inverse(m)));
+			m_modelShader->setVec3f("cameraPos", camera.getPosition());
 			model->render(*m_modelShader);
 		}
 		m_waterShader->use();
-
 	}
 }

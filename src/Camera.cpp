@@ -1,6 +1,5 @@
 #include "Camera.h"
 #include "glm/ext/matrix_clip_space.hpp"
-#include "glm/ext/matrix_transform.hpp"
 
 namespace SimpleRenderer {
 
@@ -8,9 +7,9 @@ namespace SimpleRenderer {
 		: m_pos(pos), m_speed(speed), m_rot(glm::radians(rot)), m_rotSpeed(glm::radians(rotSpeed)), m_worldUp(worldUp), m_fov(fov) {
 	}
 
-	void Camera::updateCamera(float timeStep) {
-		m_pos += timeStep * m_speed * m_acc;
-		m_rot += m_rotAcc * timeStep;
+	void Camera::updateCamera(double timeStep) {
+		m_pos += static_cast<float>(timeStep) * m_speed * m_acc;
+		m_rot += static_cast<float>(timeStep) * m_rotAcc;
 		m_acc = glm::vec3(0.0f);
 		m_rotAcc = glm::vec3(0.0f);
 		if (m_rot.x > 1.5f)
@@ -20,9 +19,9 @@ namespace SimpleRenderer {
 		updateVectors();
 	}
 
-	void Camera::updateCameraMouse(float mouseX, float mouseY) {
-		m_rotAcc.x = mouseY * m_rotSpeed.x;
-		m_rotAcc.y = mouseX * m_rotSpeed.y;
+	void Camera::updateCameraMouse(double mouseX, double mouseY) {
+		m_rotAcc.x = static_cast<float>(mouseY) * m_rotSpeed.x;
+		m_rotAcc.y = static_cast<float>(mouseX) * m_rotSpeed.y;
 		
 	}
 
@@ -62,13 +61,4 @@ namespace SimpleRenderer {
 		m_right = glm::normalize(glm::cross(m_front, m_worldUp));
 		m_up = glm::normalize(glm::cross(m_right, m_front));
 	}
-
-	glm::mat4 Camera::getView() const {
-		return glm::lookAt(m_pos, m_pos + m_front, m_up);
-	}
-
-	glm::mat4 Camera::getProjection() const	{
-		return m_projection;
-	}
-
 }

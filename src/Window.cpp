@@ -75,12 +75,10 @@ namespace SimpleRenderer {
 
 	void Window::mouseCallback(GLFWwindow* window, double xPos, double yPos) {
 		Window* newWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
-		float x = static_cast<float>(xPos);
-		float y = static_cast<float>(yPos);
-		float xOffset = x - newWindow->lastX;
-		float yOffset = newWindow->lastY - y;
-		newWindow->lastX = x;
-		newWindow->lastY = y;
+		double xOffset = xPos - newWindow->lastX;
+		double yOffset = newWindow->lastY - yPos;
+		newWindow->lastX = xPos;
+		newWindow->lastY = yPos;
 
 		newWindow->camera->updateCameraMouse(xOffset, yOffset);
 		

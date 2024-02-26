@@ -23,10 +23,11 @@ namespace SimpleRenderer {
 		void processInputs();
 		bool isPressed(const int key) const;
 		float getAspectRatio();
+		GLFWwindow* getWindow() const { return m_window; }
 
 		std::shared_ptr<Camera> camera;
 
-		float lastX = 0.0f, lastY = 0.0f;
+		double lastX{ 0.0 }, lastY{ 0.0 };
 
 	private:
 		static void framebufferSizeCallback(GLFWwindow* window, int width, int height);

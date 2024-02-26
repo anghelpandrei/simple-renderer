@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project (simple-renderer)
 
-include_directories(vendor/glad/include vendor/stb vendor/glm vendor/imgui src)
+include_directories(vendor/glad/include vendor/stb vendor/glm vendor/imgui vendor/imgui/backends src)
 
 set(CMAKE_BINARY_DIR bin)
 if (APPLE)
@@ -14,13 +14,19 @@ elseif (WIN32)
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 endif()
 
-set(LIB_FILES "vendor/glad/src/glad.c" "vendor/stb/stb_image.h" "vendor/imgui/imgui.h"
-				"vendor/imgui/backends/imgui_impl_opengl3.h" "vendor/imgui/backends/imgui_impl_glfw.h")
+set(IMGUI_FILES "vendor/imgui/imgui.h" "vendor/imgui/imgui.cpp" "vendor/imgui/imgui_demo.cpp" "vendor/imgui/imgui_draw.cpp"
+				"vendor/imgui/imgui_internal.h" "vendor/imgui/imgui_tables.cpp"
+				"vendor/imgui/imgui_widgets.cpp" "vendor/imgui/imstb_rectpack.h"
+				"vendor/imgui/imstb_textedit.h"	"vendor/imgui/imstb_truetype.h"
+				"vendor/imgui/backends/imgui_impl_opengl3.h" "vendor/imgui/backends/imgui_impl_glfw.h"
+				"vendor/imgui/backends/imgui_impl_opengl3.cpp" "vendor/imgui/backends/imgui_impl_glfw.cpp")
+
+set(LIB_FILES "vendor/glad/src/glad.c" "vendor/stb/stb_image.h" ${IMGUI_FILES})
 set(SOURCE_FILES "src/Main.cpp" "src/Window.h" "src/Window.cpp" "src/Mesh.h" "src/Mesh.cpp"
 				"src/Inputs.h" "src/Inputs.cpp" "src/Scene.h" "src/Scene.cpp" "src/Camera.h" "src/Camera.cpp"
 				"src/Shader.h" "src/Shader.cpp" "src/VertexArray.h" "src/VertexArray.cpp" "src/Buffer.h"
 				"src/Buffer.cpp" "src/Texture.h" "src/Texture.cpp" "src/Model.h" "src/Model.cpp"
-				"src/Framebuffer.h" "src/Framebuffer.cpp" "src/Application.h" "src/Application.cpp")
+				"src/Framebuffer.h" "src/Framebuffer.cpp" "src/Application.h" "src/Application.cpp" "src/Light.h" "src/Timer.h")
 
 add_executable (simple-renderer ${LIB_FILES} ${SOURCE_FILES})
 

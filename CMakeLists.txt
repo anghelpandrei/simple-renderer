@@ -1,11 +1,7 @@
-cmake_minimum_required (VERSION 3.10)
-
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+cmake_minimum_required (VERSION 3.23)
 
 project (simple-renderer)
-
-include_directories(vendor/glad/include vendor/stb vendor/glm vendor/imgui vendor/imgui/backends src)
+set(BUILD_SHARED_LIBS OFF)
 
 set(CMAKE_BINARY_DIR bin)
 if (APPLE)
@@ -14,21 +10,16 @@ elseif (WIN32)
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 endif()
 
-set(IMGUI_FILES "vendor/imgui/imgui.h" "vendor/imgui/imgui.cpp" "vendor/imgui/imgui_demo.cpp" "vendor/imgui/imgui_draw.cpp"
-				"vendor/imgui/imgui_internal.h" "vendor/imgui/imgui_tables.cpp"
-				"vendor/imgui/imgui_widgets.cpp" "vendor/imgui/imstb_rectpack.h"
-				"vendor/imgui/imstb_textedit.h"	"vendor/imgui/imstb_truetype.h"
-				"vendor/imgui/backends/imgui_impl_opengl3.h" "vendor/imgui/backends/imgui_impl_glfw.h"
-				"vendor/imgui/backends/imgui_impl_opengl3.cpp" "vendor/imgui/backends/imgui_impl_glfw.cpp")
+add_executable (simple-renderer)
 
-set(LIB_FILES "vendor/glad/src/glad.c" "vendor/stb/stb_image.h" ${IMGUI_FILES})
-set(SOURCE_FILES "src/Main.cpp" "src/Window.h" "src/Window.cpp" "src/Mesh.h" "src/Mesh.cpp"
-				"src/Inputs.h" "src/Inputs.cpp" "src/Scene.h" "src/Scene.cpp" "src/Camera.h" "src/Camera.cpp"
-				"src/Shader.h" "src/Shader.cpp" "src/VertexArray.h" "src/VertexArray.cpp" "src/Buffer.h"
-				"src/Buffer.cpp" "src/Texture.h" "src/Texture.cpp" "src/Model.h" "src/Model.cpp"
-				"src/Framebuffer.h" "src/Framebuffer.cpp" "src/Application.h" "src/Application.cpp" "src/Light.h" "src/Timer.h")
+set_target_properties(simple-renderer
+    PROPERTIES
+        CXX_STANDARD 23
+        C_STANDARD 23
+)
 
-add_executable (simple-renderer ${LIB_FILES} ${SOURCE_FILES})
+add_subdirectory(src)
+add_subdirectory(vendor)
 
 add_custom_target(copy_resources ALL
         COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -38,17 +29,12 @@ add_custom_target(copy_resources ALL
 
 add_dependencies(simple-renderer copy_resources)
 
-
-option(GLFW_BUILD_DOCS OFF)
-option(GLFW_BUILD_EXAMPLES OFF)
-option(GLFW_BUILD_TESTS OFF)
-
-add_subdirectory(vendor/glfw)
-
-option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
-option(ASSIMP_BUILD_SAMPLES OFF)
-option(ASSIMP_BUILD_TESTS OFF)
-add_subdirectory(vendor/assimp)
-
 find_package(OpenGL REQUIRED)
-target_link_libraries(simple-renderer PUBLIC OpenGL::GL glfw assimp)
+target_link_libraries(simple-renderer 
+    PRIVATE
+        "OpenGL::GL" "glfw" "assimp" "glad" "glm" "imgui"
+)
+
+target_include_directories(simple-renderer PRIVATE "src" "vendor/stb")
+target_sources(simple-renderer PRIVATE "vendor/stb/stb_image.h")
+

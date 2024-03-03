@@ -7,7 +7,7 @@
 #include "imgui_impl_opengl3.h"
 
 #include <iostream>
-#include <Light.h>
+#include "Light.h"
 
 namespace SimpleRenderer {
 
@@ -32,7 +32,7 @@ namespace SimpleRenderer {
 			m_window->bindCamera(m_camera);
 		}
 		{
-			auto modelShader = std::make_unique<ShaderProgram>("res/shaders/phong.vert", "res/shaders/phong.frag");
+			auto modelShader = std::make_unique<ShaderProgram>("res/shaders/basic.vert", "res/shaders/basic.frag");
 			auto waterShader = std::make_unique<ShaderProgram>("res/shaders/basic.vert", "res/shaders/basic.frag");
 			m_scene->setModelShader(std::move(modelShader));
 			m_scene->setWaterShader(std::move(waterShader));
@@ -57,22 +57,9 @@ namespace SimpleRenderer {
 	}
 
 	void Application::run() {
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-		ImGui::StyleColorsDark();
-		ImGui_ImplGlfw_InitForOpenGL(m_window->getWindow(), true);
-		ImGui_ImplOpenGL3_Init("#version 130");
 		while (!m_window->shouldClose()) {
 			// ImGui
-			ImGui_ImplOpenGL3_NewFrame();
-			ImGui_ImplGlfw_NewFrame();
-			ImGui::NewFrame();
-			ImGui::ShowDemoWindow();
-			ImGui::Begin("HelloWorld");
-			ImGui::End();
-			ImGui::Render();
-
+			
 			// Process the inputs
 			Inputs::processWindow(*m_window);
 			Inputs::processCamera(*m_window, *m_camera);
@@ -84,8 +71,6 @@ namespace SimpleRenderer {
 			m_window->update();
 			m_camera->updateCamera(m_timer.getTimeStep());
 		}
-		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
+		
 	}
 }

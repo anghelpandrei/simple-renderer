@@ -12,7 +12,7 @@ namespace SimpleRenderer {
 
 		int channels;
 		stbi_uc* data = stbi_load(std::string(path).c_str(), &m_width, &m_height, &channels, 0);
-
+		std::cout << m_width << 'x' << m_height << '\n';
 		if (data) {
 			std::cout << "Texture " << path << " loaded successfully" << std::endl;
 		}

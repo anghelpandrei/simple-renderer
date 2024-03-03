@@ -1,5 +1,8 @@
 #pragma once
-#include <glm/ext/vector_float3.hpp>
+
+#include "Shader.h"
+
+#include "glm/ext/vector_float3.hpp"
 
 namespace SimpleRenderer {
 
@@ -23,6 +26,9 @@ namespace SimpleRenderer {
 		float quadratic;
 
 		LightAttributes attributes;
+		void setUniforms(ShaderProgram& shader) const {
+			shader.setVec3f("position", position);
+		}
 	};
 
 	struct SpotLight {

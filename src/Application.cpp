@@ -7,6 +7,7 @@
 #include "imgui_impl_opengl3.h"
 
 #include <iostream>
+#include <Light.h>
 
 namespace SimpleRenderer {
 
@@ -39,6 +40,18 @@ namespace SimpleRenderer {
 		{
 			auto sponza = std::make_shared<Model>("res/assets/Sponza-master/sponza.obj");
 			m_scene->addModel(sponza);
+		}
+		{
+			PointLight testLight;
+			LightAttributes testLightAttributes;
+			testLightAttributes.ambient = glm::vec3(0.5f);
+			testLightAttributes.diffuse = glm::vec3(0.5f);
+			testLightAttributes.specular = glm::vec3(0.5f);
+			testLight.attributes = testLightAttributes;
+			testLight.constant = 0.5f;
+			testLight.linear = 0.5f;
+			testLight.quadratic = 0.5f;
+
 		}
 		m_scene->init();
 	}

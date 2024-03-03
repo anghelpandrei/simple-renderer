@@ -15,8 +15,15 @@ namespace SimpleRenderer {
 		m_waterShader = std::move(waterShader);
 	}
 
+	void Scene::addPointLight(const PointLight& pointLight) {
+		m_pointLights.push_back(pointLight);
+	}
+
 	void Scene::init() {
-		
+		m_modelShader->use();
+		for (const auto& pointLight : m_pointLights) {
+			pointLight.setUniforms(*m_modelShader);
+		}
 	}
 
 	void Scene::render(const Camera& camera) {

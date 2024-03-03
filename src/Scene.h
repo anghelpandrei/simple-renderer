@@ -12,6 +12,7 @@ namespace SimpleRenderer {
 		void addModel(const std::shared_ptr<Model> model);
 		void setModelShader(std::unique_ptr<ShaderProgram>&& modelShader);
 		void setWaterShader(std::unique_ptr<ShaderProgram>&& waterShader);
+		void addPointLight(const PointLight& pointLight);
 		void init();
 		void render(const Camera& camera);
 		

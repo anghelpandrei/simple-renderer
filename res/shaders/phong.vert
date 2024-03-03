@@ -13,8 +13,9 @@ out vec3 Normal;
 out vec2 TexCoords;
 
 void main() {
-	FragPos = vec3(M * vec4(aPosition, 1.0));
+	vec4 FragPos4 = M * vec4(aPosition, 1.0);
+	FragPos = FragPos.xyz;
 	Normal = mat3(itM) * aNormal;
 	TexCoords = aTexCoords;
-	gl_Position = PV * vec4(FragPos, 1.0f);
+	gl_Position = PV * FragPos4;
 }
